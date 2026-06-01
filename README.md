@@ -39,3 +39,6 @@ component.
 
 The feature grid is implemented in `src/components/sections/FeatureGrid.astro`
 with card data and icon paths from `src/config/site.ts`.
+
+The community section is implemented in `src/components/sections/Community.astro`
+and uses social links from `src/config/site.ts`.

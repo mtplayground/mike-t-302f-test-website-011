@@ -8,6 +8,15 @@ export type CtaLink = {
   href: string;
 };
 
+export type SocialChannel = 'discord' | 'x';
+
+export type CommunityCard = {
+  title: string;
+  blurb: string;
+  ctaLabel: string;
+  social: SocialChannel;
+};
+
 export type FooterGroup = {
   title: string;
   links: CtaLink[];
@@ -52,10 +61,7 @@ export type SiteConfig = {
     primary: CtaLink;
     secondary: CtaLink;
   };
-  social: {
-    discord: SocialLink;
-    x: SocialLink;
-  };
+  social: Record<SocialChannel, SocialLink>;
   contact: {
     email: string;
     mailto: `mailto:${string}`;
@@ -71,6 +77,12 @@ export type SiteConfig = {
     heading: string;
     subtext: string;
     cards: FeatureCard[];
+  };
+  community: {
+    eyebrow: string;
+    heading: string;
+    subtext: string;
+    cards: CommunityCard[];
   };
   footer: {
     groups: FooterGroup[];
@@ -188,6 +200,28 @@ export const siteConfig = {
         blurb:
           'You keep talking in plain language while myClawTeam translates decisions into concrete engineering work.',
         icon: '/assets/icons/feature-collaboration.svg',
+      },
+    ],
+  },
+  community: {
+    eyebrow: 'Community',
+    heading: 'Follow the founder-build conversation',
+    subtext:
+      'Join the places where myClawTeam shares product updates, founder workflows, and notes from autonomous software delivery.',
+    cards: [
+      {
+        title: 'Discord',
+        blurb:
+          'Join the placeholder Discord community for build discussions, launch notes, and founder operating patterns.',
+        ctaLabel: 'Join Discord',
+        social: 'discord',
+      },
+      {
+        title: 'X / Twitter',
+        blurb:
+          'Follow the placeholder X/Twitter channel for concise updates on myClawTeam releases, examples, and product notes.',
+        ctaLabel: 'Follow on X',
+        social: 'x',
       },
     ],
   },
