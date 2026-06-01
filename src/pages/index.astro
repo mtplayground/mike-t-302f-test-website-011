@@ -1,4 +1,6 @@
 ---
+import '../styles/global.css';
+
 const pageTitle = 'myClawTeam';
 ---
 
@@ -14,12 +16,41 @@ const pageTitle = 'myClawTeam';
     <title>{pageTitle}</title>
   </head>
   <body>
-    <main>
-      <h1>{pageTitle}</h1>
-      <p>
-        Static Astro project scaffold is ready for the next implementation
-        issue.
-      </p>
+    <main
+      class="mx-auto flex min-h-screen max-w-page flex-col justify-center gap-10 px-page-x py-section-sm sm:px-page-x-lg"
+    >
+      <section class="max-w-measure space-y-6">
+        <p class="text-eyebrow font-semibold uppercase text-accent-400">
+          Design system
+        </p>
+        <h1 class="font-display text-display-sm font-semibold text-ink-50">
+          {pageTitle}
+        </h1>
+        <p class="text-lead text-ink-300">
+          Tailwind is configured with dark theme tokens for near-black surfaces,
+          orange accents, typography, spacing, and focus states.
+        </p>
+      </section>
+
+      <section
+        aria-label="Theme token preview"
+        class="grid gap-4 sm:grid-cols-3"
+      >
+        <div class="rounded-lg border border-border/10 bg-surface-raised p-6">
+          <p class="font-medium text-ink-100">Surface</p>
+          <p class="mt-2 text-sm text-ink-400">Raised dark panel token.</p>
+        </div>
+        <div
+          class="rounded-lg border border-accent-500/30 bg-accent-500/10 p-6"
+        >
+          <p class="font-medium text-accent-200">Accent</p>
+          <p class="mt-2 text-sm text-accent-100/80">Orange action token.</p>
+        </div>
+        <div class="rounded-lg border border-border/10 bg-surface-elevated p-6">
+          <p class="font-medium text-ink-100">Type</p>
+          <p class="mt-2 text-sm text-ink-400">Readable muted copy scale.</p>
+        </div>
+      </section>
     </main>
   </body>
 </html>

@@ -9,3 +9,8 @@ Static Astro project for the myClawTeam website.
 - `npm run preview` serves the built site on `0.0.0.0:8080`.
 - `npm run lint` runs ESLint.
 - `npm run format:check` checks formatting with Prettier.
+
+## Styling
+
+Tailwind CSS is configured in `tailwind.config.mjs`, with the global Tailwind
+entrypoint and base design tokens in `src/styles/global.css`.
