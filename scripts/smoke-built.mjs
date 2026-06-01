@@ -111,6 +111,51 @@ try {
 
   await page.goto(baseUrl, { waitUntil: 'networkidle' });
 
+  const localAssetUrls = unique(
+    await page.evaluate(() => {
+      const urls = [];
+      const collect = (value) => {
+        if (!value) {
+          return;
+        }
+
+        const url = new URL(value, window.location.href);
+
+        if (url.origin === window.location.origin) {
+          urls.push(url.href);
+        }
+      };
+
+      document
+        .querySelectorAll('img[src], script[src], link[href]')
+        .forEach((element) => {
+          collect(element.getAttribute('src'));
+          collect(element.getAttribute('href'));
+        });
+
+      return urls.filter((url) => new URL(url).pathname !== '/');
+    }),
+  );
+  assert(localAssetUrls.length > 0, 'Expected local built assets to verify.');
+
+  const assetResponses = await page.evaluate(async (urls) => {
+    return Promise.all(
+      urls.map(async (url) => {
+        const response = await fetch(url, { cache: 'no-store' });
+
+        return {
+          pathname: new URL(url).pathname,
+          status: response.status,
+        };
+      }),
+    );
+  }, localAssetUrls);
+  const missingAssets = assetResponses.filter((asset) => asset.status !== 200);
+  assert(
+    missingAssets.length === 0,
+    `Missing built assets: ${JSON.stringify(missingAssets)}`,
+  );
+
   const internalAnchors = unique(
     await page.$$eval('a[href^="#"]', (anchors) =>
       anchors.map((anchor) => anchor.getAttribute('href')).filter(Boolean),
@@ -259,6 +304,7 @@ try {
       {
         checked: {
           anchors: internalAnchors.length,
+          assets: localAssetUrls.length,
           externalLinks: externalLinks.length,
           ctas: 2,
           tabs: true,
