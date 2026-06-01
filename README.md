@@ -42,3 +42,6 @@ with card data and icon paths from `src/config/site.ts`.
 
 The community section is implemented in `src/components/sections/Community.astro`
 and uses social links from `src/config/site.ts`.
+
+The contact section is implemented in `src/components/sections/Contact.astro`
+and composes a configured `mailto:` message without a backend.

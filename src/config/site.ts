@@ -65,6 +65,10 @@ export type SiteConfig = {
   contact: {
     email: string;
     mailto: `mailto:${string}`;
+    subject: string;
+    eyebrow: string;
+    heading: string;
+    subtext: string;
   };
   productPreview: {
     eyebrow: string;
@@ -127,6 +131,11 @@ export const siteConfig = {
   contact: {
     email: 'hello@example.com',
     mailto: 'mailto:hello@example.com',
+    subject: 'New myClawTeam project inquiry',
+    eyebrow: 'Contact',
+    heading: 'Tell myClawTeam what you want to build',
+    subtext:
+      'Share the idea, workflow, or product outcome you have in mind. The form opens your email client with the message ready to send.',
   },
   productPreview: {
     eyebrow: 'Product preview',

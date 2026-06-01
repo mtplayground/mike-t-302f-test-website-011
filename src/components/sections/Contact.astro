@@ -1,0 +1,129 @@
+---
+import SectionShell from '../SectionShell.astro';
+import { siteConfig } from '../../config/site';
+
+const { contact } = siteConfig;
+const inputClass =
+  'mt-2 w-full rounded-md border border-border/10 bg-ink-950 px-4 py-3 text-sm text-ink-50 outline-none transition-colors placeholder:text-ink-500 focus:border-accent-500';
+---
+
+<SectionShell id="contact" labelledBy="contact-heading" class="bg-ink-950">
+  <div
+    class="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start"
+  >
+    <div class="max-w-measure space-y-4">
+      <p class="text-eyebrow font-semibold uppercase text-accent-400">
+        {contact.eyebrow}
+      </p>
+      <h2
+        id="contact-heading"
+        class="font-display text-3xl font-semibold text-ink-50 sm:text-display-sm"
+      >
+        {contact.heading}
+      </h2>
+      <p class="text-lead text-ink-300">{contact.subtext}</p>
+      <p class="text-sm text-ink-400">
+        Mail target: <a href={contact.mailto}>{contact.email}</a>
+      </p>
+    </div>
+
+    <form
+      action={contact.mailto}
+      method="post"
+      enctype="text/plain"
+      class="rounded-lg border border-border/10 bg-surface-raised p-6 shadow-panel"
+      data-contact-form
+      data-contact-mailto={contact.mailto}
+      data-contact-subject={contact.subject}
+    >
+      <div class="grid gap-5">
+        <div>
+          <label for="contact-name" class="text-sm font-medium text-ink-100">
+            Name
+          </label>
+          <input
+            id="contact-name"
+            name="name"
+            type="text"
+            autocomplete="name"
+            required
+            class={inputClass}
+            placeholder="Your name"
+          />
+        </div>
+
+        <div>
+          <label for="contact-email" class="text-sm font-medium text-ink-100">
+            Email
+          </label>
+          <input
+            id="contact-email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+            class={inputClass}
+            placeholder="you@example.com"
+          />
+        </div>
+
+        <div>
+          <label for="contact-message" class="text-sm font-medium text-ink-100">
+            Message
+          </label>
+          <textarea
+            id="contact-message"
+            name="message"
+            rows="7"
+            required
+            class={inputClass}
+            placeholder="What should myClawTeam help you build?"></textarea>
+        </div>
+
+        <button
+          type="submit"
+          class="inline-flex h-12 items-center justify-center rounded-md bg-accent-500 px-6 text-sm font-semibold text-ink-950 shadow-glow transition-colors hover:bg-accent-400"
+        >
+          Compose email
+        </button>
+      </div>
+    </form>
+  </div>
+</SectionShell>
+
+<script>
+  const contactForm = document.querySelector('[data-contact-form]');
+
+  if (contactForm instanceof HTMLFormElement) {
+    contactForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      if (!contactForm.reportValidity()) {
+        return;
+      }
+
+      const formData = new FormData(contactForm);
+      const name = String(formData.get('name') ?? '').trim();
+      const email = String(formData.get('email') ?? '').trim();
+      const message = String(formData.get('message') ?? '').trim();
+      const mailto = contactForm.dataset.contactMailto;
+      const subject =
+        contactForm.dataset.contactSubject || 'New myClawTeam project inquiry';
+
+      if (!mailto) {
+        return;
+      }
+
+      const body = [
+        `Name: ${name}`,
+        `Email: ${email}`,
+        '',
+        'Message:',
+        message,
+      ].join('\n');
+      const params = new URLSearchParams({ subject, body });
+
+      window.location.href = `${mailto}?${params.toString()}`;
+    });
+  }
+</script>
