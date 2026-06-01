@@ -1,0 +1,54 @@
+Architecture plan for myClawTeam static site
+
+Product source
+- PRODUCT.md is not present in the initial checkout. Use the issue text as the product source until PRODUCT.md exists.
+- Brand/name: myClawTeam.
+- Core positioning from Issue #8: "Agent Team for Founders / You just talk, we handle the rest."
+
+Project shape
+- Astro static site with Tailwind CSS.
+- Keep the page as a mostly static single-page marketing site with small, isolated client-side scripts for mobile nav and preview tabs.
+- Produce static output in dist/ for self-hosting; avoid backend services and CI/CD assumptions.
+
+Suggested module structure
+- src/layouts/BaseLayout.astro: document shell, metadata, fonts, theme wrapper, skip link, and shared head tags.
+- src/pages/index.astro: section composition only; import each section and pass config data.
+- src/components/Nav.astro: sticky top navigation and desktop links.
+- src/components/MobileNavToggle.astro or inline script in Nav.astro: accessible open/close behavior for small screens.
+- src/components/Footer.astro: grouped links, legal/social row, config-driven content.
+- src/components/sections/Hero.astro: headline, verbatim product copy, CTAs, dark gradient backdrop.
+- src/components/sections/ProductPreview.astro: headline, tabs, framed preview image, tab markup/data attributes.
+- src/components/sections/FeatureGrid.astro: six-card feature grid from config or local data.
+- src/components/sections/Community.astro: Discord and X/Twitter cards from config.
+- src/components/sections/Contact.astro: mailto form that composes subject/body from form fields.
+- src/config/site.ts: site metadata, nav anchors, CTA links, social links, mailto target, footer groups, preview tab data, features.
+- src/assets/ or public/: logo, preview mockups, and icons. Prefer public/ for directly referenced static images and src/assets/ for imported optimized assets if needed.
+- src/styles/global.css: Tailwind layers, CSS variables/design tokens, base element styles, focus states, and smooth scrolling.
+
+Shared types and data
+- Define lightweight TypeScript types in src/config/site.ts or src/types/site.ts only if reused across multiple components.
+- Suggested types: NavItem, CtaLink, FooterGroup, SocialLink, PreviewTab, FeatureCard.
+- Keep all editable URLs and placeholder destinations centralized in site config so later issues do not duplicate links.
+
+Issue dependencies
+- Issue #1 creates the Astro skeleton, package scripts, formatting/lint setup, and first build.
+- Issue #2 depends on #1 and adds Tailwind plus dark theme tokens.
+- Issue #3 depends on #2 and establishes the global layout, base styles, and section anchor scaffolding.
+- Issue #4 depends on #1 and adds static assets plus central config.
+- Issues #5, #7, #9, #12, and #13 depend on the shared layout/config/assets from #3 and #4.
+- Issue #6 depends on #5 because the mobile toggle extends the nav component.
+- Issue #8 depends on #3 for section layout and base visual system.
+- Issue #10 depends on #9 because it wires behavior into the tabbed preview markup.
+- Issue #11 depends on #3 and should use the same card/token patterns as the rest of the page.
+- Issues #14 and #15 are cross-cutting QA passes after the main page sections are implemented.
+- Issue #16 follows responsive/accessibility work and verifies the built dist output plus links/interactions.
+- Issue #17 follows static build verification and documents self-host serving of dist/ with relative asset paths.
+
+Key design decisions
+- Use Astro components for page sections and plain TypeScript/JavaScript for the two required interactions. No frontend framework is needed for this scope.
+- Keep interaction scripts colocated with the components they enhance, using data attributes instead of brittle selectors.
+- Use semantic landmarks and anchors from the first layout implementation so accessibility and smoke testing have stable targets.
+- Use Tailwind theme extension plus CSS variables for near-black backgrounds, orange accent tokens, muted text, borders, and focus rings.
+- Build assets/config before nav/footer/section work so all links and media are driven from one source.
+- For the contact form, submit should update window.location or form action to a composed mailto URL; no backend or third-party service.
+- Final deployment prep should document serving dist/ as static files and verify paths work without a dev server.
