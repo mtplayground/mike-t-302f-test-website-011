@@ -1,0 +1,20 @@
+---
+interface Props {
+  id: string;
+  labelledBy?: string;
+  class?: string;
+}
+
+const { id, labelledBy, class: className } = Astro.props;
+---
+
+<section
+  id={id}
+  aria-labelledby={labelledBy}
+  data-section={id}
+  class:list={['scroll-mt-24 py-section-sm sm:py-section', className]}
+>
+  <div class="mx-auto max-w-page px-page-x sm:px-page-x-lg">
+    <slot />
+  </div>
+</section>

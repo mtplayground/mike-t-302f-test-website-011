@@ -1,41 +1,33 @@
 ---
-import '../styles/global.css';
+import SectionShell from '../components/SectionShell.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 
 const pageTitle = 'myClawTeam';
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Initial static Astro scaffold for the myClawTeam website."
-    />
-    <title>{pageTitle}</title>
-  </head>
-  <body>
-    <main
-      class="mx-auto flex min-h-screen max-w-page flex-col justify-center gap-10 px-page-x py-section-sm sm:px-page-x-lg"
-    >
-      <section class="max-w-measure space-y-6">
+<BaseLayout
+  title={pageTitle}
+  description="Initial static Astro scaffold for the myClawTeam website."
+>
+  <SectionShell id="intro" labelledBy="intro-heading" class="min-h-screen">
+    <div class="flex min-h-[inherit] flex-col justify-center gap-10">
+      <div class="max-w-measure space-y-6">
         <p class="text-eyebrow font-semibold uppercase text-accent-400">
-          Design system
+          Site shell
         </p>
-        <h1 class="font-display text-display-sm font-semibold text-ink-50">
+        <h1
+          id="intro-heading"
+          class="font-display text-display-sm font-semibold text-ink-50"
+        >
           {pageTitle}
         </h1>
         <p class="text-lead text-ink-300">
-          Tailwind is configured with dark theme tokens for near-black surfaces,
-          orange accents, typography, spacing, and focus states.
+          The shared document layout, font loading, dark theme wrapper, and
+          section anchor foundation are ready for the page sections.
         </p>
-      </section>
+      </div>
 
-      <section
-        aria-label="Theme token preview"
-        class="grid gap-4 sm:grid-cols-3"
-      >
+      <div aria-label="Theme token preview" class="grid gap-4 sm:grid-cols-3">
         <div class="rounded-lg border border-border/10 bg-surface-raised p-6">
           <p class="font-medium text-ink-100">Surface</p>
           <p class="mt-2 text-sm text-ink-400">Raised dark panel token.</p>
@@ -50,7 +42,7 @@ const pageTitle = 'myClawTeam';
           <p class="font-medium text-ink-100">Type</p>
           <p class="mt-2 text-sm text-ink-400">Readable muted copy scale.</p>
         </div>
-      </section>
-    </main>
-  </body>
-</html>
+      </div>
+    </div>
+  </SectionShell>
+</BaseLayout>

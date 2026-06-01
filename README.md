@@ -14,3 +14,6 @@ Static Astro project for the myClawTeam website.
 
 Tailwind CSS is configured in `tailwind.config.mjs`, with the global Tailwind
 entrypoint and base design tokens in `src/styles/global.css`.
+
+The shared document shell lives in `src/layouts/BaseLayout.astro`, and section
+anchors are scaffolded with `src/components/SectionShell.astro`.
