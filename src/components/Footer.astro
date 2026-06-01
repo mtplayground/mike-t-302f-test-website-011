@@ -1,0 +1,101 @@
+---
+import { siteConfig } from '../config/site';
+
+const { assets, description, footer, name, social } = siteConfig;
+const currentYear = new Date().getFullYear();
+const socialLinks = Object.values(social);
+const isExternal = (href: string) => href.startsWith('http');
+---
+
+<footer class="border-t border-border/10 bg-ink-950">
+  <div class="mx-auto max-w-page px-page-x py-16 sm:px-page-x-lg lg:py-20">
+    <div class="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+      <div class="max-w-sm space-y-5">
+        <a
+          href="#intro"
+          class="inline-flex rounded-md no-underline"
+          aria-label={`${name} home`}
+        >
+          <img
+            src={assets.logo}
+            alt={`${name} logo`}
+            width="280"
+            height="64"
+            class="h-11 w-auto"
+          />
+        </a>
+        <p class="text-sm leading-6 text-ink-400">{description}</p>
+      </div>
+
+      <nav aria-label="Footer navigation" class="grid gap-10 sm:grid-cols-3">
+        {
+          footer.groups.map((group) => (
+            <div>
+              <h2 class="text-sm font-semibold text-ink-50">{group.title}</h2>
+              <ul class="mt-4 space-y-3">
+                {group.links.map((link) => (
+                  <li>
+                    <a
+                      href={link.href}
+                      target={isExternal(link.href) ? '_blank' : undefined}
+                      rel={isExternal(link.href) ? 'noreferrer' : undefined}
+                      class="text-sm text-ink-400 no-underline hover:text-accent-300"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </nav>
+    </div>
+
+    <div
+      class="mt-14 flex flex-col gap-6 border-t border-border/10 pt-8 md:flex-row md:items-center md:justify-between"
+    >
+      <p class="text-sm text-ink-500">
+        Copyright {currentYear}
+        {name}. All rights reserved.
+      </p>
+
+      <div class="flex flex-wrap items-center gap-x-6 gap-y-4">
+        <nav aria-label="Legal links" class="flex flex-wrap gap-x-5 gap-y-3">
+          {
+            footer.legal.map((link) => (
+              <a
+                href={link.href}
+                class="text-sm text-ink-500 no-underline hover:text-ink-200"
+              >
+                {link.label}
+              </a>
+            ))
+          }
+        </nav>
+
+        <div class="flex items-center gap-3" aria-label="Social links">
+          {
+            socialLinks.map((link) => (
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={link.label}
+                class="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border/10 bg-surface-raised no-underline transition-colors hover:border-accent-500/50 hover:bg-surface-elevated"
+              >
+                <img
+                  src={link.icon}
+                  alt=""
+                  width="24"
+                  height="24"
+                  class="h-5 w-5"
+                />
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

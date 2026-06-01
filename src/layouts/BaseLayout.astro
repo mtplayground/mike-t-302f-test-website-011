@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Footer from '../components/Footer.astro';
 import Nav from '../components/Nav.astro';
 import { siteConfig } from '../config/site';
 
@@ -37,6 +38,7 @@ const { title = siteConfig.name, description = siteConfig.description } =
       <main id="main-content" tabindex="-1">
         <slot />
       </main>
+      <Footer />
     </div>
   </body>
 </html>
