@@ -1,5 +1,5 @@
 ---
-import SectionShell from '../components/SectionShell.astro';
+import Hero from '../components/sections/Hero.astro';
 import { siteConfig } from '../config/site';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
@@ -7,47 +7,5 @@ const pageTitle = siteConfig.name;
 ---
 
 <BaseLayout title={pageTitle} description={siteConfig.description}>
-  <SectionShell id="intro" labelledBy="intro-heading" class="min-h-screen">
-    <div class="flex min-h-[inherit] flex-col justify-center gap-10">
-      <div class="max-w-measure space-y-6">
-        <img
-          src={siteConfig.assets.logo}
-          alt={`${siteConfig.name} logo`}
-          width="280"
-          height="64"
-          class="h-12 w-auto"
-        />
-        <p class="text-eyebrow font-semibold uppercase text-accent-400">
-          Site shell
-        </p>
-        <h1
-          id="intro-heading"
-          class="font-display text-display-sm font-semibold text-ink-50"
-        >
-          {pageTitle}
-        </h1>
-        <p class="text-lead text-ink-300">
-          The shared document layout, font loading, dark theme wrapper, and
-          section anchor foundation are ready for the page sections.
-        </p>
-      </div>
-
-      <div aria-label="Theme token preview" class="grid gap-4 sm:grid-cols-3">
-        <div class="rounded-lg border border-border/10 bg-surface-raised p-6">
-          <p class="font-medium text-ink-100">Surface</p>
-          <p class="mt-2 text-sm text-ink-400">Raised dark panel token.</p>
-        </div>
-        <div
-          class="rounded-lg border border-accent-500/30 bg-accent-500/10 p-6"
-        >
-          <p class="font-medium text-accent-200">Accent</p>
-          <p class="mt-2 text-sm text-accent-100/80">Orange action token.</p>
-        </div>
-        <div class="rounded-lg border border-border/10 bg-surface-elevated p-6">
-          <p class="font-medium text-ink-100">Type</p>
-          <p class="mt-2 text-sm text-ink-400">Readable muted copy scale.</p>
-        </div>
-      </div>
-    </div>
-  </SectionShell>
+  <Hero />
 </BaseLayout>
