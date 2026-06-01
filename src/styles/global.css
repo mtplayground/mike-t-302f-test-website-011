@@ -25,10 +25,34 @@
     text-rendering: optimizeLegibility;
   }
 
+  #main-content {
+    @apply min-h-screen outline-none;
+  }
+
   *,
   *::before,
   *::after {
     box-sizing: border-box;
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  button {
+    cursor: pointer;
   }
 
   ::selection {
@@ -45,6 +69,20 @@
 
   :focus-visible {
     @apply outline outline-2 outline-offset-4 outline-accent-400;
+  }
+}
+
+@layer components {
+  .theme-shell {
+    @apply min-h-screen bg-ink-950 bg-radial-accent text-ink-100;
+  }
+
+  .skip-link {
+    @apply fixed left-4 top-4 z-50 -translate-y-24 rounded-md border border-border/20 bg-surface-elevated px-4 py-3 text-sm font-semibold text-ink-50 shadow-panel transition-transform;
+  }
+
+  .skip-link:focus {
+    @apply translate-y-0;
   }
 }
 
