@@ -36,3 +36,6 @@ The product-preview section is implemented in
 `src/config/site.ts`.
 Its tab switching is handled by a small colocated client script in the same
 component.
+
+The feature grid is implemented in `src/components/sections/FeatureGrid.astro`
+with card data and icon paths from `src/config/site.ts`.
