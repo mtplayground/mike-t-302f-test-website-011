@@ -1,0 +1,67 @@
+---
+import SectionShell from '../SectionShell.astro';
+import { siteConfig } from '../../config/site';
+
+const { community, social } = siteConfig;
+---
+
+<SectionShell
+  id="community"
+  labelledBy="community-heading"
+  class="bg-surface-base"
+>
+  <div class="space-y-10">
+    <div class="max-w-3xl space-y-4">
+      <p class="text-eyebrow font-semibold uppercase text-accent-400">
+        {community.eyebrow}
+      </p>
+      <h2
+        id="community-heading"
+        class="font-display text-3xl font-semibold text-ink-50 sm:text-display-sm"
+      >
+        {community.heading}
+      </h2>
+      <p class="text-lead text-ink-300">{community.subtext}</p>
+    </div>
+
+    <div class="grid gap-4 lg:grid-cols-2">
+      {
+        community.cards.map((card) => {
+          const link = social[card.social];
+
+          return (
+            <article class="rounded-lg border border-border/10 bg-surface-raised p-6 shadow-panel">
+              <div class="flex items-start justify-between gap-6">
+                <div class="flex h-12 w-12 items-center justify-center rounded-md border border-accent-500/20 bg-accent-500/10">
+                  <img
+                    src={link.icon}
+                    alt=""
+                    width="28"
+                    height="28"
+                    class="h-7 w-7"
+                  />
+                </div>
+                <span class="rounded-md border border-border/10 px-3 py-1 text-xs font-semibold uppercase text-ink-400">
+                  {link.label}
+                </span>
+              </div>
+
+              <div class="mt-8 space-y-4">
+                <h3 class="text-xl font-semibold text-ink-50">{card.title}</h3>
+                <p class="text-sm leading-6 text-ink-400">{card.blurb}</p>
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="inline-flex h-11 items-center justify-center rounded-md bg-accent-500 px-5 text-sm font-semibold text-ink-950 no-underline shadow-glow transition-colors hover:bg-accent-400 hover:text-ink-950"
+                >
+                  {card.ctaLabel}
+                </a>
+              </div>
+            </article>
+          );
+        })
+      }
+    </div>
+  </div>
+</SectionShell>
