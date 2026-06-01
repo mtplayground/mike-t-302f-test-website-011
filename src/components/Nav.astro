@@ -1,0 +1,57 @@
+---
+import { siteConfig } from '../config/site';
+
+const { assets, ctas, name, nav } = siteConfig;
+---
+
+<header
+  class="sticky top-0 z-40 border-b border-border/10 bg-ink-950/80 backdrop-blur-xl"
+>
+  <div
+    class="mx-auto flex h-20 max-w-page items-center justify-between gap-6 px-page-x sm:px-page-x-lg"
+  >
+    <a
+      href="#intro"
+      class="inline-flex shrink-0 items-center rounded-md no-underline"
+      aria-label={`${name} home`}
+    >
+      <img
+        src={assets.logo}
+        alt=""
+        width="280"
+        height="64"
+        class="h-10 w-auto"
+      />
+    </a>
+
+    <nav
+      aria-label="Primary navigation"
+      class="hidden items-center gap-1 md:flex"
+    >
+      {
+        nav.map((item) => (
+          <a
+            href={item.href}
+            class="rounded-md px-4 py-2 text-sm font-medium text-ink-300 no-underline hover:text-ink-50"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <a
+      href={ctas.primary.href}
+      class="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-md bg-accent-500 px-5 text-sm font-semibold text-ink-950 no-underline shadow-glow transition-colors hover:bg-accent-400 hover:text-ink-950"
+    >
+      <span>{ctas.primary.label}</span>
+      <img
+        src={assets.icons.arrowRight}
+        alt=""
+        width="18"
+        height="18"
+        class="h-4 w-4"
+      />
+    </a>
+  </div>
+</header>
