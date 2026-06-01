@@ -1,0 +1,100 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  darkMode: 'class',
+  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+  theme: {
+    extend: {
+      colors: {
+        ink: {
+          50: '#f7f7f8',
+          100: '#eeeef0',
+          200: '#d9d9de',
+          300: '#b9bac3',
+          400: '#8f909d',
+          500: '#71727f',
+          600: '#5b5c68',
+          700: '#4a4b55',
+          800: '#2c2d34',
+          900: '#17181d',
+          950: '#090a0d',
+        },
+        surface: {
+          base: '#090a0d',
+          raised: '#101116',
+          elevated: '#17181d',
+          muted: '#202128',
+        },
+        accent: {
+          50: '#fff7ed',
+          100: '#ffedd5',
+          200: '#fed7aa',
+          300: '#fdba74',
+          400: '#fb923c',
+          500: '#f97316',
+          600: '#ea580c',
+          700: '#c2410c',
+          800: '#9a3412',
+          900: '#7c2d12',
+          950: '#431407',
+        },
+        border: 'rgb(var(--color-border) / <alpha-value>)',
+      },
+      fontFamily: {
+        sans: [
+          'Inter',
+          'ui-sans-serif',
+          'system-ui',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'Segoe UI',
+          'sans-serif',
+        ],
+        display: [
+          'Inter',
+          'ui-sans-serif',
+          'system-ui',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'Segoe UI',
+          'sans-serif',
+        ],
+        mono: [
+          'JetBrains Mono',
+          'SFMono-Regular',
+          'Consolas',
+          'Liberation Mono',
+          'monospace',
+        ],
+      },
+      fontSize: {
+        eyebrow: ['0.75rem', { lineHeight: '1rem', letterSpacing: '0' }],
+        lead: ['1.125rem', { lineHeight: '1.75rem', letterSpacing: '0' }],
+        display: ['4.5rem', { lineHeight: '0.95', letterSpacing: '0' }],
+        'display-sm': ['3rem', { lineHeight: '1', letterSpacing: '0' }],
+      },
+      spacing: {
+        'page-x': '1.5rem',
+        'page-x-lg': '3rem',
+        section: '7.5rem',
+        'section-sm': '5rem',
+        'section-lg': '9rem',
+        18: '4.5rem',
+        22: '5.5rem',
+        26: '6.5rem',
+        30: '7.5rem',
+      },
+      maxWidth: {
+        page: '72rem',
+        measure: '42rem',
+      },
+      boxShadow: {
+        glow: '0 0 40px rgb(249 115 22 / 0.18)',
+        panel: '0 24px 80px rgb(0 0 0 / 0.35)',
+      },
+      backgroundImage: {
+        'radial-accent':
+          'radial-gradient(circle at 50% 0%, rgb(249 115 22 / 0.18), transparent 32rem)',
+      },
+    },
+  },
+};
