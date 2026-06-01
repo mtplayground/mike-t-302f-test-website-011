@@ -8,6 +8,11 @@ export type CtaLink = {
   href: string;
 };
 
+export type FooterGroup = {
+  title: string;
+  links: CtaLink[];
+};
+
 export type SocialLink = {
   label: string;
   href: string;
@@ -40,6 +45,10 @@ export type SiteConfig = {
   contact: {
     email: string;
     mailto: `mailto:${string}`;
+  };
+  footer: {
+    groups: FooterGroup[];
+    legal: CtaLink[];
   };
 };
 
@@ -80,5 +89,35 @@ export const siteConfig = {
   contact: {
     email: 'hello@example.com',
     mailto: 'mailto:hello@example.com',
+  },
+  footer: {
+    groups: [
+      {
+        title: 'Product',
+        links: [
+          { label: 'Products', href: '#products' },
+          { label: 'Features', href: '#features' },
+          { label: 'Get Started', href: '#contact' },
+        ],
+      },
+      {
+        title: 'Community',
+        links: [
+          { label: 'Discord', href: 'https://example.com/myclawteam-discord' },
+          { label: 'X', href: 'https://example.com/myclawteam-x' },
+        ],
+      },
+      {
+        title: 'Company',
+        links: [
+          { label: 'Contact', href: '#contact' },
+          { label: 'Email', href: 'mailto:hello@example.com' },
+        ],
+      },
+    ],
+    legal: [
+      { label: 'Privacy', href: '#privacy' },
+      { label: 'Terms', href: '#terms' },
+    ],
   },
 } satisfies SiteConfig;
