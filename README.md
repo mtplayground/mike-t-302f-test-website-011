@@ -28,3 +28,5 @@ menu toggle.
 
 The footer is implemented in `src/components/Footer.astro` and uses grouped
 links, legal links, and social links from `src/config/site.ts`.
+
+The hero section is implemented in `src/components/sections/Hero.astro`.
