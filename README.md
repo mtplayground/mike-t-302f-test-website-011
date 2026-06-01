@@ -34,3 +34,5 @@ The hero section is implemented in `src/components/sections/Hero.astro`.
 The product-preview section is implemented in
 `src/components/sections/ProductPreview.astro` and uses tab data from
 `src/config/site.ts`.
+Its tab switching is handled by a small colocated client script in the same
+component.
