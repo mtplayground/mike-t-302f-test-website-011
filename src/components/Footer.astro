@@ -39,6 +39,11 @@ const isExternal = (href: string) => href.startsWith('http');
                       href={link.href}
                       target={isExternal(link.href) ? '_blank' : undefined}
                       rel={isExternal(link.href) ? 'noreferrer' : undefined}
+                      aria-label={
+                        isExternal(link.href)
+                          ? `${link.label} (opens in a new tab)`
+                          : undefined
+                      }
                       class="text-sm text-ink-400 no-underline hover:text-accent-300"
                     >
                       {link.label}
@@ -55,7 +60,7 @@ const isExternal = (href: string) => href.startsWith('http');
     <div
       class="mt-14 flex flex-col gap-6 border-t border-border/10 pt-8 md:flex-row md:items-center md:justify-between"
     >
-      <p class="text-sm text-ink-500">
+      <p class="text-sm text-ink-400">
         Copyright {currentYear}
         {name}. All rights reserved.
       </p>
@@ -66,7 +71,7 @@ const isExternal = (href: string) => href.startsWith('http');
             footer.legal.map((link) => (
               <a
                 href={link.href}
-                class="text-sm text-ink-500 no-underline hover:text-ink-200"
+                class="text-sm text-ink-400 no-underline hover:text-ink-200"
               >
                 {link.label}
               </a>
@@ -74,14 +79,14 @@ const isExternal = (href: string) => href.startsWith('http');
           }
         </nav>
 
-        <div class="flex items-center gap-3" aria-label="Social links">
+        <nav class="flex items-center gap-3" aria-label="Social links">
           {
             socialLinks.map((link) => (
               <a
                 href={link.href}
                 target="_blank"
                 rel="noreferrer"
-                aria-label={link.label}
+                aria-label={`${link.label} (opens in a new tab)`}
                 class="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border/10 bg-surface-raised no-underline transition-colors hover:border-accent-500/50 hover:bg-surface-elevated"
               >
                 <img
@@ -94,7 +99,7 @@ const isExternal = (href: string) => href.startsWith('http');
               </a>
             ))
           }
-        </div>
+        </nav>
       </div>
     </div>
   </div>
