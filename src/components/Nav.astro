@@ -5,6 +5,7 @@ const { assets, ctas, name, nav } = siteConfig;
 ---
 
 <header
+  data-nav-root
   class="sticky top-0 z-40 border-b border-border/10 bg-ink-950/80 backdrop-blur-xl"
 >
   <div
@@ -42,7 +43,7 @@ const { assets, ctas, name, nav } = siteConfig;
 
     <a
       href={ctas.primary.href}
-      class="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-md bg-accent-500 px-5 text-sm font-semibold text-ink-950 no-underline shadow-glow transition-colors hover:bg-accent-400 hover:text-ink-950"
+      class="hidden h-11 shrink-0 items-center justify-center gap-2 rounded-md bg-accent-500 px-5 text-sm font-semibold text-ink-950 no-underline shadow-glow transition-colors hover:bg-accent-400 hover:text-ink-950 md:inline-flex"
     >
       <span>{ctas.primary.label}</span>
       <img
@@ -53,5 +54,114 @@ const { assets, ctas, name, nav } = siteConfig;
         class="h-4 w-4"
       />
     </a>
+
+    <button
+      type="button"
+      class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-border/10 bg-surface-elevated text-ink-50 transition-colors hover:border-accent-500/50 md:hidden"
+      aria-controls="mobile-navigation"
+      aria-expanded="false"
+      aria-label="Open navigation menu"
+      data-nav-toggle
+    >
+      <span class="sr-only" data-nav-toggle-label>Open navigation menu</span>
+      <span
+        class="flex h-5 w-5 flex-col justify-center gap-1.5"
+        aria-hidden="true"
+      >
+        <span class="block h-0.5 w-5 rounded-full bg-current"></span>
+        <span class="block h-0.5 w-5 rounded-full bg-current"></span>
+      </span>
+    </button>
+  </div>
+
+  <div
+    id="mobile-navigation"
+    class="border-t border-border/10 px-page-x py-4 shadow-panel md:hidden"
+    data-nav-menu
+    hidden
+  >
+    <nav aria-label="Mobile navigation" class="flex flex-col gap-2">
+      {
+        nav.map((item) => (
+          <a
+            href={item.href}
+            class="rounded-md px-3 py-3 text-base font-medium text-ink-100 no-underline hover:bg-surface-elevated hover:text-ink-50"
+            data-nav-link
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <a
+        href={ctas.primary.href}
+        class="mt-2 inline-flex h-11 items-center justify-center gap-2 rounded-md bg-accent-500 px-5 text-sm font-semibold text-ink-950 no-underline shadow-glow transition-colors hover:bg-accent-400 hover:text-ink-950"
+        data-nav-link
+      >
+        <span>{ctas.primary.label}</span>
+        <img
+          src={assets.icons.arrowRight}
+          alt=""
+          width="18"
+          height="18"
+          class="h-4 w-4"
+        />
+      </a>
+    </nav>
   </div>
 </header>
+
+<script>
+  const navRoot = document.querySelector('[data-nav-root]');
+
+  if (navRoot) {
+    const toggle = navRoot.querySelector('[data-nav-toggle]');
+    const toggleLabel = navRoot.querySelector('[data-nav-toggle-label]');
+    const menu = navRoot.querySelector('[data-nav-menu]');
+    const links = navRoot.querySelectorAll('[data-nav-link]');
+    const desktopQuery = window.matchMedia('(min-width: 768px)');
+
+    const setMenuState = (isOpen: boolean) => {
+      if (
+        !(toggle instanceof HTMLButtonElement) ||
+        !(menu instanceof HTMLElement)
+      ) {
+        return;
+      }
+
+      menu.hidden = !isOpen;
+      toggle.setAttribute('aria-expanded', String(isOpen));
+      toggle.setAttribute(
+        'aria-label',
+        isOpen ? 'Close navigation menu' : 'Open navigation menu',
+      );
+
+      if (toggleLabel) {
+        toggleLabel.textContent = isOpen
+          ? 'Close navigation menu'
+          : 'Open navigation menu';
+      }
+    };
+
+    if (toggle instanceof HTMLButtonElement && menu instanceof HTMLElement) {
+      toggle.addEventListener('click', () => {
+        setMenuState(menu.hidden);
+      });
+
+      links.forEach((link) => {
+        link.addEventListener('click', () => setMenuState(false));
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          setMenuState(false);
+        }
+      });
+
+      desktopQuery.addEventListener('change', (event) => {
+        if (event.matches) {
+          setMenuState(false);
+        }
+      });
+    }
+  }
+</script>
