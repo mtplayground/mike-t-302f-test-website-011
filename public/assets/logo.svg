@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 64" role="img" aria-labelledby="logo-title">
+  <title id="logo-title">myClawTeam</title>
+  <rect width="64" height="64" rx="14" fill="#090a0d"/>
+  <rect x="1" y="1" width="62" height="62" rx="13" fill="none" stroke="#ffffff" stroke-opacity=".12" stroke-width="2"/>
+  <path d="M17 43c7-20 23-20 30 0" fill="none" stroke="#f97316" stroke-width="6" stroke-linecap="round"/>
+  <path d="M25 27h14" stroke="#f97316" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="25" cy="27" r="4" fill="#fff7ed"/>
+  <circle cx="39" cy="27" r="4" fill="#fff7ed"/>
+  <text x="82" y="40" fill="#f7f7f8" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="26" font-weight="700">myClawTeam</text>
+</svg>

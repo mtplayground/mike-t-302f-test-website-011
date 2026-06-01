@@ -17,3 +17,6 @@ entrypoint and base design tokens in `src/styles/global.css`.
 
 The shared document shell lives in `src/layouts/BaseLayout.astro`, and section
 anchors are scaffolded with `src/components/SectionShell.astro`.
+
+Editable site metadata, navigation links, CTA destinations, social links,
+contact target, and asset paths live in `src/config/site.ts`.

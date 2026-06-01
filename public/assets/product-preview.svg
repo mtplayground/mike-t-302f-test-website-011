@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 800" role="img" aria-labelledby="preview-title preview-desc">
+  <title id="preview-title">Product preview placeholder</title>
+  <desc id="preview-desc">Dark interface mockup placeholder for the myClawTeam product preview section.</desc>
+  <rect width="1280" height="800" fill="#090a0d"/>
+  <rect x="56" y="48" width="1168" height="704" rx="28" fill="#101116" stroke="#ffffff" stroke-opacity=".12" stroke-width="2"/>
+  <rect x="56" y="48" width="1168" height="72" rx="28" fill="#17181d"/>
+  <circle cx="96" cy="84" r="9" fill="#f97316"/>
+  <circle cx="124" cy="84" r="9" fill="#fb923c"/>
+  <circle cx="152" cy="84" r="9" fill="#fed7aa"/>
+  <rect x="196" y="74" width="266" height="20" rx="10" fill="#2c2d34"/>
+  <rect x="96" y="160" width="258" height="552" rx="20" fill="#17181d" stroke="#ffffff" stroke-opacity=".08"/>
+  <rect x="128" y="198" width="144" height="18" rx="9" fill="#f97316"/>
+  <rect x="128" y="246" width="178" height="14" rx="7" fill="#71727f"/>
+  <rect x="128" y="282" width="128" height="14" rx="7" fill="#4a4b55"/>
+  <rect x="128" y="336" width="186" height="48" rx="14" fill="#202128"/>
+  <rect x="128" y="408" width="186" height="48" rx="14" fill="#202128"/>
+  <rect x="128" y="480" width="186" height="48" rx="14" fill="#202128"/>
+  <rect x="398" y="160" width="786" height="262" rx="24" fill="#17181d" stroke="#ffffff" stroke-opacity=".08"/>
+  <rect x="438" y="204" width="318" height="28" rx="14" fill="#f7f7f8"/>
+  <rect x="438" y="256" width="534" height="16" rx="8" fill="#8f909d"/>
+  <rect x="438" y="290" width="426" height="16" rx="8" fill="#5b5c68"/>
+  <rect x="438" y="348" width="152" height="42" rx="21" fill="#f97316"/>
+  <rect x="614" y="348" width="142" height="42" rx="21" fill="#202128" stroke="#ffffff" stroke-opacity=".12"/>
+  <rect x="398" y="454" width="236" height="258" rx="24" fill="#17181d" stroke="#ffffff" stroke-opacity=".08"/>
+  <rect x="674" y="454" width="236" height="258" rx="24" fill="#17181d" stroke="#ffffff" stroke-opacity=".08"/>
+  <rect x="948" y="454" width="236" height="258" rx="24" fill="#17181d" stroke="#ffffff" stroke-opacity=".08"/>
+  <rect x="438" y="500" width="76" height="76" rx="20" fill="#f97316" fill-opacity=".16"/>
+  <rect x="714" y="500" width="76" height="76" rx="20" fill="#f97316" fill-opacity=".16"/>
+  <rect x="988" y="500" width="76" height="76" rx="20" fill="#f97316" fill-opacity=".16"/>
+  <rect x="438" y="612" width="146" height="16" rx="8" fill="#d9d9de"/>
+  <rect x="714" y="612" width="146" height="16" rx="8" fill="#d9d9de"/>
+  <rect x="988" y="612" width="146" height="16" rx="8" fill="#d9d9de"/>
+  <rect x="438" y="650" width="112" height="14" rx="7" fill="#71727f"/>
+  <rect x="714" y="650" width="112" height="14" rx="7" fill="#71727f"/>
+  <rect x="988" y="650" width="112" height="14" rx="7" fill="#71727f"/>
+</svg>
