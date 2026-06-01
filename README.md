@@ -7,6 +7,8 @@ Static Astro project for the myClawTeam website.
 - `npm run dev` starts the Astro development server on `0.0.0.0:8080`.
 - `npm run build` runs Astro diagnostics and creates the static `dist/` build.
 - `npm run preview` serves the built site on `0.0.0.0:8080`.
+- `npm run smoke:built` serves `dist/` locally and checks built-output
+  anchors, CTAs, tabs, external links, local assets, and the `mailto:` form.
 - `npm run lint` runs ESLint.
 - `npm run format:check` checks formatting with Prettier.
 
@@ -45,3 +47,13 @@ and uses social links from `src/config/site.ts`.
 
 The contact section is implemented in `src/components/sections/Contact.astro`
 and composes a configured `mailto:` message without a backend.
+
+## Self-Hosted Deployment
+
+Build with `npm ci` and `npm run build`, then serve the generated `dist/`
+directory as the web root of the self-hosted target.
+
+Run `npm run smoke:built` after `npm run build` to verify the static output,
+including same-origin asset paths under `/assets` and `/_astro`.
+
+Detailed self-hosting notes live in `docs/self-hosting.md`.
