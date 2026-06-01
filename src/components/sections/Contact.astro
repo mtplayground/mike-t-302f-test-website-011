@@ -122,8 +122,15 @@ const inputClass =
         message,
       ].join('\n');
       const params = new URLSearchParams({ subject, body });
+      const href = `${mailto}?${params.toString()}`;
+      const composeEvent = new CustomEvent('myclawteam:mailto-compose', {
+        cancelable: true,
+        detail: { href },
+      });
 
-      window.location.href = `${mailto}?${params.toString()}`;
+      if (window.dispatchEvent(composeEvent)) {
+        window.location.href = href;
+      }
     });
   }
 </script>
