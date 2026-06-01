@@ -96,3 +96,80 @@ const activeTab = productPreview.tabs[0];
     </div>
   </div>
 </SectionShell>
+
+<script>
+  const previewRoot = document.querySelector('[data-product-preview]');
+
+  if (previewRoot) {
+    const tabButtons = Array.from(
+      previewRoot.querySelectorAll('[data-preview-tab]'),
+    ).filter(
+      (tab): tab is HTMLButtonElement => tab instanceof HTMLButtonElement,
+    );
+    const image = previewRoot.querySelector('[data-preview-image-target]');
+    const panel = previewRoot.querySelector('[role="tabpanel"]');
+    const activeClasses = ['bg-accent-500', 'text-ink-950'];
+    const inactiveClasses = [
+      'bg-transparent',
+      'text-ink-300',
+      'hover:bg-surface-elevated',
+      'hover:text-ink-50',
+    ];
+
+    const setActiveTab = (selectedTab: HTMLButtonElement) => {
+      tabButtons.forEach((tab) => {
+        const isSelected = tab === selectedTab;
+
+        tab.setAttribute('aria-selected', String(isSelected));
+        tab.tabIndex = isSelected ? 0 : -1;
+        tab.classList.remove(...activeClasses, ...inactiveClasses);
+        tab.classList.add(...(isSelected ? activeClasses : inactiveClasses));
+      });
+
+      if (panel instanceof HTMLElement) {
+        panel.setAttribute('aria-labelledby', selectedTab.id);
+      }
+
+      if (image instanceof HTMLImageElement) {
+        const nextImage = selectedTab.dataset.previewImage;
+        const nextAlt = selectedTab.dataset.previewAlt;
+
+        if (nextImage) {
+          image.src = nextImage;
+        }
+
+        if (nextAlt) {
+          image.alt = nextAlt;
+        }
+      }
+    };
+
+    tabButtons.forEach((tab, index) => {
+      tab.addEventListener('click', () => setActiveTab(tab));
+      tab.addEventListener('keydown', (event) => {
+        const lastIndex = tabButtons.length - 1;
+        let nextIndex = index;
+
+        if (event.key === 'ArrowRight') {
+          nextIndex = index === lastIndex ? 0 : index + 1;
+        } else if (event.key === 'ArrowLeft') {
+          nextIndex = index === 0 ? lastIndex : index - 1;
+        } else if (event.key === 'Home') {
+          nextIndex = 0;
+        } else if (event.key === 'End') {
+          nextIndex = lastIndex;
+        } else {
+          return;
+        }
+
+        event.preventDefault();
+        const nextTab = tabButtons[nextIndex];
+
+        if (nextTab) {
+          setActiveTab(nextTab);
+          nextTab.focus();
+        }
+      });
+    });
+  }
+</script>
