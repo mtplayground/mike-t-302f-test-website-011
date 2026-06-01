@@ -23,3 +23,5 @@ contact target, and asset paths live in `src/config/site.ts`.
 
 The sticky top navigation is implemented in `src/components/Nav.astro` and uses
 the central site config for logo, anchor links, and the primary CTA.
+On small screens, the same component exposes an accessible client-side mobile
+menu toggle.
