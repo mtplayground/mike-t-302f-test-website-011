@@ -120,7 +120,7 @@ const { assets, ctas, name, nav } = siteConfig;
     const links = navRoot.querySelectorAll('[data-nav-link]');
     const desktopQuery = window.matchMedia('(min-width: 768px)');
 
-    const setMenuState = (isOpen: boolean) => {
+    const setMenuState = (isOpen: boolean, restoreFocus = false) => {
       if (
         !(toggle instanceof HTMLButtonElement) ||
         !(menu instanceof HTMLElement)
@@ -140,6 +140,10 @@ const { assets, ctas, name, nav } = siteConfig;
           ? 'Close navigation menu'
           : 'Open navigation menu';
       }
+
+      if (!isOpen && restoreFocus) {
+        toggle.focus();
+      }
     };
 
     if (toggle instanceof HTMLButtonElement && menu instanceof HTMLElement) {
@@ -152,8 +156,8 @@ const { assets, ctas, name, nav } = siteConfig;
       });
 
       document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') {
-          setMenuState(false);
+        if (event.key === 'Escape' && !menu.hidden) {
+          setMenuState(false, true);
         }
       });
 

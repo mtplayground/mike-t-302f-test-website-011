@@ -49,6 +49,7 @@ const activeTab = productPreview.tabs[0];
               id={`preview-tab-${tab.id}`}
               aria-selected={index === 0 ? 'true' : 'false'}
               aria-controls="preview-panel"
+              aria-describedby={`preview-tab-description-${tab.id}`}
               tabindex={index === 0 ? '0' : '-1'}
               class:list={[
                 'rounded-md px-4 py-3 text-left transition-colors',
@@ -60,9 +61,13 @@ const activeTab = productPreview.tabs[0];
               data-preview-image={tab.image}
               data-preview-alt={tab.imageAlt}
               data-preview-description={tab.description}
+              data-preview-label={tab.label}
             >
               <span class="block text-sm font-semibold">{tab.label}</span>
-              <span class="mt-1 block text-sm opacity-80">
+              <span
+                id={`preview-tab-description-${tab.id}`}
+                class="mt-1 block text-sm opacity-80"
+              >
                 {tab.description}
               </span>
             </button>
@@ -92,6 +97,9 @@ const activeTab = productPreview.tabs[0];
           class="w-full"
           data-preview-image-target
         />
+        <figcaption class="sr-only" aria-live="polite" data-preview-status>
+          Showing {activeTab.label}: {activeTab.imageAlt}
+        </figcaption>
       </figure>
     </div>
   </div>
@@ -108,6 +116,7 @@ const activeTab = productPreview.tabs[0];
     );
     const image = previewRoot.querySelector('[data-preview-image-target]');
     const panel = previewRoot.querySelector('[role="tabpanel"]');
+    const status = previewRoot.querySelector('[data-preview-status]');
     const activeClasses = ['bg-accent-500', 'text-ink-950'];
     const inactiveClasses = [
       'bg-transparent',
@@ -133,6 +142,7 @@ const activeTab = productPreview.tabs[0];
       if (image instanceof HTMLImageElement) {
         const nextImage = selectedTab.dataset.previewImage;
         const nextAlt = selectedTab.dataset.previewAlt;
+        const nextLabel = selectedTab.dataset.previewLabel;
 
         if (nextImage) {
           image.src = nextImage;
@@ -140,6 +150,10 @@ const activeTab = productPreview.tabs[0];
 
         if (nextAlt) {
           image.alt = nextAlt;
+        }
+
+        if (status instanceof HTMLElement && nextLabel && nextAlt) {
+          status.textContent = `Showing ${nextLabel}: ${nextAlt}`;
         }
       }
     };
