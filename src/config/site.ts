@@ -13,6 +13,12 @@ export type FooterGroup = {
   links: CtaLink[];
 };
 
+export type FeatureCard = {
+  title: string;
+  blurb: string;
+  icon: string;
+};
+
 export type PreviewTab = {
   id: string;
   label: string;
@@ -59,6 +65,12 @@ export type SiteConfig = {
     heading: string;
     subtext: string;
     tabs: PreviewTab[];
+  };
+  features: {
+    eyebrow: string;
+    heading: string;
+    subtext: string;
+    cards: FeatureCard[];
   };
   footer: {
     groups: FooterGroup[];
@@ -132,6 +144,50 @@ export const siteConfig = {
         description: 'Keep deployment and operating work visible in one flow.',
         image: '/assets/product-preview.svg',
         imageAlt: 'myClawTeam operations workspace preview',
+      },
+    ],
+  },
+  features: {
+    eyebrow: 'Built exclusively for founders',
+    heading: 'A full SDLC agent team in your repository',
+    subtext:
+      'myClawTeam is shaped around founder-speed software delivery: clear direction in, owned production code out.',
+    cards: [
+      {
+        title: 'SDLC automation',
+        blurb:
+          'myClawTeam turns founder direction into plans, branches, pull requests, and shipped increments without scattering work across tools.',
+        icon: '/assets/icons/feature-sdlc.svg',
+      },
+      {
+        title: 'Security-aware delivery',
+        blurb:
+          'Security review, dependency choices, and deployment posture stay visible as part of the same delivery flow.',
+        icon: '/assets/icons/feature-security.svg',
+      },
+      {
+        title: 'Full code ownership',
+        blurb:
+          'Every artifact lands in your repository, so your team keeps the code, history, and production path under its control.',
+        icon: '/assets/icons/feature-ownership.svg',
+      },
+      {
+        title: 'Autonomous build loops',
+        blurb:
+          'The agent team handles implementation details while keeping pull requests and build status ready for review.',
+        icon: '/assets/icons/feature-build.svg',
+      },
+      {
+        title: 'Deploy and operate',
+        blurb:
+          'Build, deploy, and operate work is planned together so software can keep moving after the first release.',
+        icon: '/assets/icons/feature-operate.svg',
+      },
+      {
+        title: 'Founder-speed collaboration',
+        blurb:
+          'You keep talking in plain language while myClawTeam translates decisions into concrete engineering work.',
+        icon: '/assets/icons/feature-collaboration.svg',
       },
     ],
   },

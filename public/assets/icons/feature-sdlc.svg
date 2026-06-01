@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-labelledby="feature-sdlc-title">
+  <title id="feature-sdlc-title">SDLC automation</title>
+  <path d="M7 7h7.5a4.5 4.5 0 0 1 0 9H13" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
+  <path d="M7 3v8H3M17 21v-8h4" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,4 +1,5 @@
 ---
+import FeatureGrid from '../components/sections/FeatureGrid.astro';
 import Hero from '../components/sections/Hero.astro';
 import ProductPreview from '../components/sections/ProductPreview.astro';
 import { siteConfig } from '../config/site';
@@ -10,4 +11,5 @@ const pageTitle = siteConfig.name;
 <BaseLayout title={pageTitle} description={siteConfig.description}>
   <Hero />
   <ProductPreview />
+  <FeatureGrid />
 </BaseLayout>
