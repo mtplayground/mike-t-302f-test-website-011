@@ -1,0 +1,98 @@
+---
+import SectionShell from '../SectionShell.astro';
+import { siteConfig } from '../../config/site';
+
+const { productPreview } = siteConfig;
+const activeTab = productPreview.tabs[0];
+---
+
+<SectionShell
+  id="products"
+  labelledBy="product-preview-heading"
+  class="bg-surface-base"
+>
+  <div class="space-y-10">
+    <div
+      class="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-end"
+    >
+      <div class="max-w-measure space-y-4">
+        <p class="text-eyebrow font-semibold uppercase text-accent-400">
+          {productPreview.eyebrow}
+        </p>
+        <h2
+          id="product-preview-heading"
+          class="font-display text-3xl font-semibold text-ink-50 sm:text-display-sm"
+        >
+          {productPreview.heading}
+        </h2>
+      </div>
+
+      <p class="text-lead text-ink-300 lg:justify-self-end">
+        {productPreview.subtext}
+      </p>
+    </div>
+
+    <div
+      class="rounded-lg border border-border/10 bg-surface-raised p-3 shadow-panel"
+      data-product-preview
+    >
+      <div
+        role="tablist"
+        aria-label="Product preview views"
+        class="grid gap-2 border-b border-border/10 pb-3 md:grid-cols-3"
+      >
+        {
+          productPreview.tabs.map((tab, index) => (
+            <button
+              type="button"
+              role="tab"
+              id={`preview-tab-${tab.id}`}
+              aria-selected={index === 0 ? 'true' : 'false'}
+              aria-controls="preview-panel"
+              tabindex={index === 0 ? '0' : '-1'}
+              class:list={[
+                'rounded-md px-4 py-3 text-left transition-colors',
+                index === 0
+                  ? 'bg-accent-500 text-ink-950'
+                  : 'bg-transparent text-ink-300 hover:bg-surface-elevated hover:text-ink-50',
+              ]}
+              data-preview-tab={tab.id}
+              data-preview-image={tab.image}
+              data-preview-alt={tab.imageAlt}
+              data-preview-description={tab.description}
+            >
+              <span class="block text-sm font-semibold">{tab.label}</span>
+              <span class="mt-1 block text-sm opacity-80">
+                {tab.description}
+              </span>
+            </button>
+          ))
+        }
+      </div>
+
+      <figure
+        id="preview-panel"
+        role="tabpanel"
+        aria-labelledby={`preview-tab-${activeTab.id}`}
+        class="overflow-hidden rounded-md border border-border/10 bg-ink-950"
+      >
+        <div
+          class="flex h-12 items-center gap-2 border-b border-border/10 bg-surface-elevated px-4"
+        >
+          <span class="h-3 w-3 rounded-full bg-accent-500"></span>
+          <span class="h-3 w-3 rounded-full bg-accent-300"></span>
+          <span class="h-3 w-3 rounded-full bg-ink-500"></span>
+          <span class="ml-3 h-3 w-40 rounded-full bg-ink-800"></span>
+        </div>
+        <img
+          src={activeTab.image}
+          alt={activeTab.imageAlt}
+          width="1280"
+          height="800"
+          class="w-full"
+          data-preview-image-target
+        />
+      </figure>
+    </div>
+  </div>
+</SectionShell>

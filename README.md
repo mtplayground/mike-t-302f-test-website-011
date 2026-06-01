@@ -30,3 +30,7 @@ The footer is implemented in `src/components/Footer.astro` and uses grouped
 links, legal links, and social links from `src/config/site.ts`.
 
 The hero section is implemented in `src/components/sections/Hero.astro`.
+
+The product-preview section is implemented in
+`src/components/sections/ProductPreview.astro` and uses tab data from
+`src/config/site.ts`.

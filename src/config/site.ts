@@ -13,6 +13,14 @@ export type FooterGroup = {
   links: CtaLink[];
 };
 
+export type PreviewTab = {
+  id: string;
+  label: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+};
+
 export type SocialLink = {
   label: string;
   href: string;
@@ -45,6 +53,12 @@ export type SiteConfig = {
   contact: {
     email: string;
     mailto: `mailto:${string}`;
+  };
+  productPreview: {
+    eyebrow: string;
+    heading: string;
+    subtext: string;
+    tabs: PreviewTab[];
   };
   footer: {
     groups: FooterGroup[];
@@ -89,6 +103,37 @@ export const siteConfig = {
   contact: {
     email: 'hello@example.com',
     mailto: 'mailto:hello@example.com',
+  },
+  productPreview: {
+    eyebrow: 'Product preview',
+    heading: 'See the agent team turn direction into delivery',
+    subtext:
+      'A GitHub-native workspace for planning, building, deploying, and operating production software while your repository stays the source of truth.',
+    tabs: [
+      {
+        id: 'plan',
+        label: 'Plan',
+        description:
+          'Convert founder direction into scoped implementation steps.',
+        image: '/assets/product-preview.svg',
+        imageAlt: 'myClawTeam planning workspace preview',
+      },
+      {
+        id: 'build',
+        label: 'Build',
+        description:
+          'Track code changes, review status, and delivery progress.',
+        image: '/assets/product-preview.svg',
+        imageAlt: 'myClawTeam build workspace preview',
+      },
+      {
+        id: 'operate',
+        label: 'Operate',
+        description: 'Keep deployment and operating work visible in one flow.',
+        image: '/assets/product-preview.svg',
+        imageAlt: 'myClawTeam operations workspace preview',
+      },
+    ],
   },
   footer: {
     groups: [
